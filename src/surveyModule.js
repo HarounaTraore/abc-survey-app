@@ -1,70 +1,58 @@
-const db = require('./config/database');
+const { client, db } = require("./config/database");
 
-// Fonction pour générer un surveyId unique
+const collectionSurvey = db.collection("surveys");
+
 async function generateUniqueSurveyId(collectionSurvey) {
-    const lastSurvey = await collectionSurvey.find({}).sort({ surveyId: -1 }).limit(1).toArray();
-    return lastSurvey.length > 0 ? lastSurvey[0].surveyId + 1 : 1;
+  const lastSurvey = await collectionSurvey
+    .find({})
+    .sort({ surveyId: -1 })
+    .limit(1)
+    .toArray();
+  return lastSurvey.length > 0 ? lastSurvey[0].surveyId + 1 : 1;
 }
 
-// Fonction d'ajout
 async function addSurvey(document) {
-    try {
-        const collectionSurvey = await db.connection();
-        document.surveyId = await generateUniqueSurveyId(collectionSurvey); // Générer un surveyId unique
-        await collectionSurvey.insertOne(document);
-        console.log('Document inserted successfully with surveyId:', document.surveyId);
-    } catch (e) {
-        console.error('Failed to insert document:', e.message);
-    } finally {
-        db.client.close(); 
-    }
+  try {
+    document.surveyId = await generateUniqueSurveyId(collectionSurvey);
+    collectionSurvey.insertOne(document);
+    console.log(`le document ${document.surveyId} a été ajouter avec succès.`);
+  } catch (e) {
+    throw e.message;
+  }
 }
 
-// Une fonction permettant d'afficher tous les documents
 async function getSurvey() {
-    try {
-        const collectionSurvey = await db.connection();
-        const results = await collectionSurvey.find({}).toArray(); 
-        console.log('Documents retrieved:', results);
-        return results;
-    } catch (e) {
-        console.error('Erreur lors de la récupération des documents :', e.message);
-    } finally {
-        db.client.close(); 
-    }
+ try{
+    const result = await collectionSurvey.find({}).toArray();
+    console.log("lesresuta", result);
+ }catch(e){
+    throw e
+ }
 }
 
-// Fonction pour mettre à jour un document en utilisant surveyId
 async function updateSurvey(surveyId, updateData) {
-    try {
-        const collectionSurvey = await db.connection();
-        const result = await collectionSurvey.updateOne({ surveyId: surveyId }, { $set: updateData }); 
-        console.log('Document updated:', result.modifiedCount);
-        return result;
-    } catch (e) {
-        console.error('Erreur lors de la mise à jour du document :', e.message);
-    } finally {
-        db.client.close(); 
-    }
+  try{
+    await collectionSurvey.updateOne(
+        { surveyId: surveyId },
+        { $set: updateData }
+      );
+      console.log(`Document ${surveyId} est modifié avec succès. `);
+  }catch(e) {
+    throw e
+  }
 }
 
-// Fonction pour supprimer un document en utilisant surveyId
 async function destroySurvey(surveyId) {
-    try {
-        const collectionSurvey = await db.connection();
-        const result = await collectionSurvey.deleteOne({ surveyId: surveyId }); // Supprime un document correspondant à surveyId
-        console.log('Document deleted:', result.deletedCount);
-        return result;
-    } catch (e) {
-        console.error('Erreur lors de la suppression du document :', e.message);
-    } finally {
-        db.client.close(); // Assure que la connexion est fermée après l'opération
-    }
+   try{
+    collectionSurvey.deleteOne({surveyId: surveyId})
+    console.log(`Document ${surveyId} a été supprimer avec succès.`)
+   }catch(e){
+    throw e
+   }
 }
-
 module.exports = {
-    addSurvey,
-    getSurvey,
-    updateSurvey,
-    destroySurvey
-}
+  addSurvey,
+  getSurvey,
+  updateSurvey,
+  destroySurvey
+};

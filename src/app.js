@@ -1,17 +1,17 @@
 const {addSurvey, getSurvey, updateSurvey, destroySurvey} = require('./surveyModule')
-const {addAnswer, getAnswer, updateAnswer, destroyAnswer} = require('./answerModule')
-const {addQuestion, getQuestion, updateQuestion, destroyQuestion} = require('./questionModule')
+// const {addAnswer, getAnswer, updateAnswer, destroyAnswer} = require('./answerModule')
+// const {addQuestion, getQuestion, updateQuestion, destroyQuestion} = require('./questionModule')
 
     const surveys = 
-        {
-            name: "Customer Satisfaction Survey",
-            description: "Survey to evaluate customer satisfaction with our services.",
+        {   
+            name: "Customer InSatisfaction Survey",
+            description: "ssssssssssssssssssssssssss.",
             createdAt: new Date("2024-07-25T08:00:00Z"),
             createdBy: {
-              employeeName: "Jane Smith",
-              employeeRole: "Customer Service Manager"
+              employeeName: "Harouna Traore",
+              employeeRole: "Client Developpeur."
             },
-            questionIds: [1, 2, 3, 4, 5, 6]
+            questionIds: 1
           }
           
     const questions = 
@@ -35,21 +35,21 @@ async function main() {
     try{
         // await addSurvey(surveys)
         // await getSurvey()
-        // await updateSurvey()
-        // await destroySurvey()
+        // await updateSurvey(8, surveys)
+        await destroySurvey(11)
 
         // await addAnswer(answer)
         // await getAnswer()
         // await updateAnswer()
         // await destroyAnswer()
 
-        await addQuestion(questions)
+        // await addQuestion(questions)
         // await getQuestion()
         // await updateQuestion()
         // await destroyQuestion()
 
     } catch(e){
-        throw e
+        console.log(e)
     }
 }
 
