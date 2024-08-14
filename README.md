@@ -93,7 +93,7 @@ L'application est subdivisée en cinq modules principaux :
 
 ***suveyId, questionId et answerId : Sont de entier (INT)***
 
-***objet :est  un objet javascript ou un objet json  ***
+***objet :est  un objet javascript ou un objet json***
 
 `
   Il est important de noté que les fonctions ne peuvent qu'un seul document à la fois.
