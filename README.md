@@ -89,6 +89,13 @@ L'application est subdivisée en cinq modules principaux :
   3. `answerUpdate` : pour modifier un document de la collection de ***answers***.
   4. `answerDestroy` : pour supprimer un document de la collection de ***answers***.
 
+*Les fonctions qui ont le suffixe ***Add*** prennent un objet en entré et il ne peuvent inserer qu'un seul document à la fois*
+*Les fonctions qui ont le suffixe  ***Get*** ne prennent aucun parametre*
+*Les fonctions qui ont le suffixe ***Update*** prennent deux parametre à l'entré, ***Id*** et un ***objet*** de nouvelles valeurs*
+il est inportant de noté que cette Id auto_Increment, pour chaque collection, l'Id est nommer comme suit: ***nomCollectionId***
+*Pour les fonctions qui ont le suffixe ***Destroy*** prennent l'ID en parametre*.
+
+
 - **app.js :** est l'entrée principale de l'application. Il contient une fonction principale **main** qui englobe l'appel de toutes les fonctions des différents modules.
 
 ## Utilisation
