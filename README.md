@@ -72,29 +72,31 @@ L'application est subdivisée en cinq modules principaux :
   
   1. `surveyAdd(objet)` : pour ajouter un document dans la collection de ***surveys***.
   2. `surveyGet()` : pour afficher tous les documents de la collection de ***surveys***.
-  3. `surveyUpdate()` : pour modifier un document de la collection de ***surveys***.
-  4. `surveyDestroy()` : pour supprimer un document de la collection de ***surveys***.
+  3. `surveyUpdate(surveyId, objet)` : pour modifier un document de la collection de ***surveys***.
+  4. `surveyDestroy(surveyId)` : pour supprimer un document de la collection de ***surveys***.
 
 - **questionModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **questions**. Il est composé des fonctions suivantes :
 
-  1. `questionAdd(objet)` : pour ajouter un document de la collection de ***questions***.
-  2. `questionGet()` : pour afficher tous les documents de la collection de ***questions***.
-  3. `questionUpdate()` : pour modifier un document de la collection de ***questions***.
-  4. `questionDestroy()` : pour supprimer un document de la collection de ***questions***.
+  1. `questionAdd(objet)` : pour ajouter un document dans la collection de ***questions***.
+  2. `questionGet()` : pour afficher tous les documents dans la collection de ***questions***.
+  3. `questionUpdate(questionId, objet)` : pour modifier un document dans la collection de ***questions***.
+  4. `questionDestroy(questionId)` : pour supprimer un document dans  la collection de ***questions***.
+
+
 
 - **answerModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **answers**. Il est composé des fonctions suivantes :
 
-  1. `answerAdd(objet)` : Pour ajouter un document dans collection de ***answers***.
-  2. `answerGet()` : Pour afficher tous les documents dans collection de ***answers***.
-  3. `answerUpdate()` : Pour modifier un document dans collection de ***answers***.
-  4. `answerDestroy()` : Pour supprimer un document dans collection de ***answers***.
+  1. `answerAdd(objet)` : Pour ajouter un document dans la collection de ***answers***.
+  2. `answerGet()` : Pour afficher tous les documents dans la collection de ***answers***.
+  3. `answerUpdate(questionId, objet)` : Pour modifier un document dans la collection de ***answers***.
+  4. `answerDestroy(questionId)` : Pour supprimer un document dans la collection de ***answers***.
 
-*Les fonctions qui ont le suffixe ***Add*** prennent un objet en entré et il ne peuvent inserer qu'un seul document à la fois*
-*Les fonctions qui ont le suffixe  ***Get*** ne prennent aucun parametre*
-*Les fonctions qui ont le suffixe ***Update*** prennent deux parametre à l'entré, ***Id*** et un ***objet*** de nouvelles valeurs*
-il est inportant de noté que cette Id auto_Increment, pour chaque collection, l'Id est nommer comme suit: ***nomCollectionId***
-*Pour les fonctions qui ont le suffixe ***Destroy*** prennent l'ID en parametre*.
+***suveyId, questionId et answerId : Sont de entier (INT)***
+***objet : un objet ***
 
+```
+  *Il est important de noté que les fonctions ne peuvent qu'un seul document à la fois.* 
+```
 
 - **app.js :** est l'entrée principale de l'application. Il contient une fonction principale **main** qui englobe l'appel de toutes les fonctions des différents modules.
 
