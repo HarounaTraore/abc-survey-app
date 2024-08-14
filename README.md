@@ -94,9 +94,9 @@ L'application est subdivisée en cinq modules principaux :
 ***suveyId, questionId et answerId : Sont de entier (INT)***
 ***objet : un objet ***
 
-```
+`
   *Il est important de noté que les fonctions ne peuvent qu'un seul document à la fois.* 
-```
+`
 
 - **app.js :** est l'entrée principale de l'application. Il contient une fonction principale **main** qui englobe l'appel de toutes les fonctions des différents modules.
 
