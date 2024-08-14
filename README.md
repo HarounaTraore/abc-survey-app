@@ -37,7 +37,7 @@ Suivez ces étapes pour configurer le projet sur votre machine locale :
 4. **Configuration de la base de données :**
 
     Le fichier `config/database.js` contient la configuration nécessaire pour interagir avec la base de données et ses différentes collections.
-    avant de l'ancer l'application, il est necessaire de mettre en place la base de données et les differentes collections à l'aide de command suivantes :
+    avant de lancer l'application, il est necessaire de mettre en place la base de données et les differentes collections à l'aide de command suivantes :
 
     creation de la base de données
      ```mongoDB
