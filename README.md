@@ -92,7 +92,8 @@ L'application est subdivisée en cinq modules principaux :
   4. `answerDestroy(questionId)` : Pour supprimer un document dans la collection de ***answers***.
 
 ***suveyId, questionId et answerId : Sont de entier (INT)***
-***objet : un objet ***
+
+***objet :est  un objet javascript ou un objet json  ***
 
 `
   Il est important de noté que les fonctions ne peuvent qu'un seul document à la fois.
