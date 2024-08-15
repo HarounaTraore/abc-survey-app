@@ -79,7 +79,7 @@ L'application est subdivisée en cinq modules principaux :
 
   1. `questionAdd({questionId: INT, surveyId: INT, name: STRING, type: STRING})` : pour ajouter un document dans la collection de ***questions***.
   2. `questionGet()` : pour afficher tous les documents dans la collection de ***questions***.
-  3. `questionUpdate(questionId,{ surveyId: INT, name: STRING, type: STRING} )` : pour modifier un document dans la collection de ***questions***.
+  3. `questionUpdate(questionId, { surveyId: INT, name: STRING, type: STRING})` : pour modifier un document dans la collection de ***questions***.
   4. `questionDestroy(questionId)` : pour supprimer un document dans  la collection de ***questions***.
 
 
@@ -88,15 +88,12 @@ L'application est subdivisée en cinq modules principaux :
 
   1. `answerAdd({answerId: INT, questionId: INT, title: STRING})` : Pour ajouter un document dans la collection de ***answers***.
   2. `answerGet()` : Pour afficher tous les documents dans la collection de ***answers***.
-  3. `answerUpdate(questionId, objet)` : Pour modifier un document dans la collection de ***answers***.
-  4. `answerDestroy(questionId)` : Pour supprimer un document dans la collection de ***answers***.
+  3. `answerUpdate(answerId: INT, {questionId: INT, title: STRING})` : Pour modifier un document dans la collection de ***answers***.
+  4. `answerDestroy(answerId: INT,)` : Pour supprimer un document dans la collection de ***answers***.
 
-***suveyId, questionId et answerId : Sont de entier (INT)***
-
-***objet :est  un objet javascript ou un objet json***
 
 `
-  Il est important de noté que les fonctions ne peuvent qu'un seul document à la fois.
+  Il est important de noté que les fonctions ne peuvent prendre à l'entré qu'un seul document à la fois.
 `
 
 - **app.js :** est l'entrée principale de l'application. Il contient une fonction principale **main** qui englobe l'appel de toutes les fonctions des différents modules.
