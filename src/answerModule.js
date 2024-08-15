@@ -35,15 +35,20 @@ async function updateAnswer(answerId, updateData) {
     // Convertir answerId en entier si nécessaire
     const id = parseInt(answerId, 10);
 
+    // Exclure le champ `_id` de updateData s'il est présent
+    const { _id, ...updateFields } = updateData;
+
     const existingAnswer = await collectionAnswer.findOne({ answerId: id });
     if (existingAnswer) {
       await collectionAnswer.updateOne(
         { answerId: id },
-        { $set: updateData }
+        { $set: updateFields }
       );
       console.log(`Document ${id} est modifié avec succès.`);
     } else {
-      console.log(`Erreur: Le document que vous tentez de modifier n'existe pas.`);
+      console.log(
+        `Erreur: Le document que vous tentez de modifier n'existe pas.`
+      );
     }
   } catch (e) {
     throw new Error(e.message);
@@ -60,7 +65,9 @@ async function destroyAnswer(answerId) {
       await collectionAnswer.deleteOne({ answerId: id });
       console.log(`Document ${id} a été supprimé avec succès.`);
     } else {
-      console.log(`Erreur: Le document que vous tentez de supprimer n'existe pas.`);
+      console.log(
+        `Erreur: Le document que vous tentez de supprimer n'existe pas.`
+      );
     }
   } catch (e) {
     throw new Error(e.message);

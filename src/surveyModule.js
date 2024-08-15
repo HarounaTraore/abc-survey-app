@@ -32,18 +32,22 @@ async function getSurvey() {
 
 async function updateSurvey(surveyId, updateData) {
   try {
-    // Convertir surveyId en entier si nécessaire
     const id = parseInt(surveyId, 10);
+
+    // Exclure le champ `_id` de updateData s'il est présent
+    const { _id, ...updateFields } = updateData;
 
     const existingSurvey = await collectionSurvey.findOne({ surveyId: id });
     if (existingSurvey) {
       await collectionSurvey.updateOne(
         { surveyId: id },
-        { $set: updateData }
+        { $set: updateFields }
       );
       console.log(`Document ${id} est modifié avec succès.`);
     } else {
-      console.log(`Erreur: Le document que vous tentez de modifier n'existe pas.`);
+      console.log(
+        `Erreur: Le document que vous tentez de modifier n'existe pas.`
+      );
     }
   } catch (e) {
     throw new Error(e.message);
@@ -60,7 +64,9 @@ async function destroySurvey(surveyId) {
       await collectionSurvey.deleteOne({ surveyId: id });
       console.log(`Document ${id} a été supprimé avec succès.`);
     } else {
-      console.log(`Erreur: Le document que vous tentez de supprimer n'existe pas.`);
+      console.log(
+        `Erreur: Le document que vous tentez de supprimer n'existe pas.`
+      );
     }
   } catch (e) {
     throw new Error(e.message);

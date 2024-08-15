@@ -35,7 +35,9 @@ async function updateQuestion(questionId, updateData) {
     // Convertir questionId en entier si nécessaire
     const id = parseInt(questionId, 10);
 
-    const existingQuestion = await collectionQuestion.findOne({ questionId: id });
+    const existingQuestion = await collectionQuestion.findOne({
+      questionId: id,
+    });
     if (existingQuestion) {
       await collectionQuestion.updateOne(
         { questionId: id },
@@ -43,7 +45,9 @@ async function updateQuestion(questionId, updateData) {
       );
       console.log(`Document ${id} est modifié avec succès.`);
     } else {
-      console.log(`Erreur: Le document que vous tentez de modifier n'existe pas.`);
+      console.log(
+        `Erreur: Le document que vous tentez de modifier n'existe pas.`
+      );
     }
   } catch (e) {
     throw new Error(e.message);
@@ -52,15 +56,18 @@ async function updateQuestion(questionId, updateData) {
 
 async function destroyQuestion(questionId) {
   try {
- 
     const id = parseInt(questionId, 10);
 
-    const existingQuestion = await collectionQuestion.findOne({ questionId: id });
+    const existingQuestion = await collectionQuestion.findOne({
+      questionId: id,
+    });
     if (existingQuestion) {
       await collectionQuestion.deleteOne({ questionId: id });
       console.log(`Document ${id} a été supprimé avec succès.`);
     } else {
-      console.log(`Erreur: Le document que vous tentez de supprimer n'existe pas.`);
+      console.log(
+        `Erreur: Le document que vous tentez de supprimer n'existe pas.`
+      );
     }
   } catch (e) {
     throw new Error(e.message);
