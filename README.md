@@ -70,26 +70,26 @@ L'application est subdivisée en cinq modules principaux :
 
 - **surveyModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **surveys**. Il est composé des fonctions suivantes :
   
-  1. `surveyAdd({surveyId: INT, name: STRING, description: STRING, createdAt: DATE})` : pour ajouter un document dans la collection de ***surveys***.
+  1. `surveyAdd({surveyId: int, name: string, description: string, createdAt: date})` : pour ajouter un document dans la collection de ***surveys***.
   2. `surveyGet()` : pour afficher tous les documents de la collection de ***surveys***.
-  3. `surveyUpdate(surveyId: INT, {name: STRING, description: STRING, createdAt: DATE})` : pour modifier un document de la collection de ***surveys***.
-  4. `surveyDestroy(surveyId: INT)` : pour supprimer un document de la collection de ***surveys***.
+  3. `surveyUpdate(surveyId: int, {name: string, description: string, createdAt: date})` : pour modifier un document de la collection de ***surveys***.
+  4. `surveyDestroy(surveyId: int)` : pour supprimer un document de la collection de ***surveys***.
 
 - **questionModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **questions**. Il est composé des fonctions suivantes :
 
-  1. `questionAdd({questionId: INT, surveyId: INT, name: STRING, type: STRING})` : pour ajouter un document dans la collection de ***questions***.
+  1. `questionAdd({questionId: int, surveyId: int, name: string, type: string})` : pour ajouter un document dans la collection de ***questions***.
   2. `questionGet()` : pour afficher tous les documents dans la collection de ***questions***.
-  3. `questionUpdate(questionId, { surveyId: INT, name: STRING, type: STRING})` : pour modifier un document dans la collection de ***questions***.
+  3. `questionUpdate(questionId, { surveyId: int, name: string, type: string})` : pour modifier un document dans la collection de ***questions***.
   4. `questionDestroy(questionId)` : pour supprimer un document dans  la collection de ***questions***.
 
 
 
 - **answerModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **answers**. Il est composé des fonctions suivantes :
 
-  1. `answerAdd({answerId: INT, questionId: INT, title: STRING})` : Pour ajouter un document dans la collection de ***answers***.
+  1. `answerAdd({answerId: int, questionId: int, title: string})` : Pour ajouter un document dans la collection de ***answers***.
   2. `answerGet()` : Pour afficher tous les documents dans la collection de ***answers***.
-  3. `answerUpdate(answerId: INT, {questionId: INT, title: STRING})` : Pour modifier un document dans la collection de ***answers***.
-  4. `answerDestroy(answerId: INT,)` : Pour supprimer un document dans la collection de ***answers***.
+  3. `answerUpdate(answerId: int, {questionId: int, title: string})` : Pour modifier un document dans la collection de ***answers***.
+  4. `answerDestroy(answerId: int,)` : Pour supprimer un document dans la collection de ***answers***.
 
 
 `
