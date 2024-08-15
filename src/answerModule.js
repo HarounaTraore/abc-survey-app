@@ -14,45 +14,62 @@ async function generateUniqueAnswerId(collectionAnswer) {
 async function addAnswer(document) {
   try {
     document.answerId = await generateUniqueAnswerId(collectionAnswer);
-    collectionAnswer.insertOne(document);
-    console.log(`le document ${document.answerId} a été ajouter avec succès.`);
+    await collectionAnswer.insertOne(document);
+    console.log(`Le document ${document.answerId} a été ajouté avec succès.`);
   } catch (e) {
-    throw e.message;
+    throw new Error(e.message);
   }
 }
 
 async function getAnswer() {
- try{
+  try {
     const result = await collectionAnswer.find({}).toArray();
-    console.log("lesresuta", result);
- }catch(e){
-    throw e
- }
+    console.log("Les résultats:", result);
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
 
 async function updateAnswer(answerId, updateData) {
-  try{
-    await collectionAnswer.updateOne(
-        { answerId: answerId },
+  try {
+    // Convertir answerId en entier si nécessaire
+    const id = parseInt(answerId, 10);
+
+    const existingAnswer = await collectionAnswer.findOne({ answerId: id });
+    if (existingAnswer) {
+      await collectionAnswer.updateOne(
+        { answerId: id },
         { $set: updateData }
       );
-      console.log(`Document ${answerId} est modifié avec succès. `);
-  }catch(e) {
-    throw e
+      console.log(`Document ${id} est modifié avec succès.`);
+    } else {
+      console.log(`Erreur: Le document que vous tentez de modifier n'existe pas.`);
+    }
+  } catch (e) {
+    throw new Error(e.message);
   }
 }
 
 async function destroyAnswer(answerId) {
-   try{
-    collectionAnswer.deleteOne({answerId: answerId})
-    console.log(`Document ${answerId} a été supprimer avec succès.`)
-   }catch(e){
-    throw e
-   }
+  try {
+    // Convertir answerId en entier si nécessaire
+    const id = parseInt(answerId, 10);
+
+    const existingAnswer = await collectionAnswer.findOne({ answerId: id });
+    if (existingAnswer) {
+      await collectionAnswer.deleteOne({ answerId: id });
+      console.log(`Document ${id} a été supprimé avec succès.`);
+    } else {
+      console.log(`Erreur: Le document que vous tentez de supprimer n'existe pas.`);
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
+
 module.exports = {
   addAnswer,
   getAnswer,
   updateAnswer,
-  destroyAnswer
+  destroyAnswer,
 };

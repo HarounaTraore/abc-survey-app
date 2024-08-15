@@ -1,13 +1,13 @@
 const { addSurvey, getSurvey, updateSurvey, destroySurvey } = require("./surveyModule");
 const { addAnswer, getAnswer, updateAnswer, destroyAnswer } = require("./answerModule");
 const { addQuestion, getQuestion, updateQuestion, destroyQuestion } = require("./questionModule");
+const { client } = require("./config/database");
 
 
 
 
 
 const question ={
-  questionId: 1,
   surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
   type: "rating",
@@ -49,11 +49,11 @@ async function main() {
 
     await addQuestion(question)
     await getQuestion()
-    await updateQuestion(1, question)
-    await destroyQuestion(1)
+    await updateQuestion(100, question)
+    await destroyQuestion(2)
   } catch (e) {
     console.log(e);
-  }
+  } finally{ await client.close()}
 }
 
 main();

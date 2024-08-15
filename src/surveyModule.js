@@ -14,45 +14,62 @@ async function generateUniqueSurveyId(collectionSurvey) {
 async function addSurvey(document) {
   try {
     document.surveyId = await generateUniqueSurveyId(collectionSurvey);
-    collectionSurvey.insertOne(document);
-    console.log(`le document ${document.surveyId} a été ajouter avec succès.`);
+    await collectionSurvey.insertOne(document);
+    console.log(`Le document ${document.surveyId} a été ajouté avec succès.`);
   } catch (e) {
-    throw e.message;
+    throw new Error(e.message);
   }
 }
 
 async function getSurvey() {
- try{
+  try {
     const result = await collectionSurvey.find({}).toArray();
-    console.log("lesresuta", result);
- }catch(e){
-    throw e
- }
+    console.log("Les résultats:", result);
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
 
 async function updateSurvey(surveyId, updateData) {
-  try{
-    await collectionSurvey.updateOne(
-        { surveyId: surveyId },
+  try {
+    // Convertir surveyId en entier si nécessaire
+    const id = parseInt(surveyId, 10);
+
+    const existingSurvey = await collectionSurvey.findOne({ surveyId: id });
+    if (existingSurvey) {
+      await collectionSurvey.updateOne(
+        { surveyId: id },
         { $set: updateData }
       );
-      console.log(`Document ${surveyId} est modifié avec succès. `);
-  }catch(e) {
-    throw e
+      console.log(`Document ${id} est modifié avec succès.`);
+    } else {
+      console.log(`Erreur: Le document que vous tentez de modifier n'existe pas.`);
+    }
+  } catch (e) {
+    throw new Error(e.message);
   }
 }
 
 async function destroySurvey(surveyId) {
-   try{
-    collectionSurvey.deleteOne({surveyId: surveyId})
-    console.log(`Document ${surveyId} a été supprimer avec succès.`)
-   }catch(e){
-    throw e
-   }
+  try {
+    // Convertir surveyId en entier si nécessaire
+    const id = parseInt(surveyId, 10);
+
+    const existingSurvey = await collectionSurvey.findOne({ surveyId: id });
+    if (existingSurvey) {
+      await collectionSurvey.deleteOne({ surveyId: id });
+      console.log(`Document ${id} a été supprimé avec succès.`);
+    } else {
+      console.log(`Erreur: Le document que vous tentez de supprimer n'existe pas.`);
+    }
+  } catch (e) {
+    throw new Error(e.message);
+  }
 }
+
 module.exports = {
   addSurvey,
   getSurvey,
   updateSurvey,
-  destroySurvey
+  destroySurvey,
 };

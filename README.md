@@ -70,23 +70,23 @@ L'application est subdivisée en cinq modules principaux :
 
 - **surveyModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **surveys**. Il est composé des fonctions suivantes :
   
-  1. `surveyAdd(objet)` : pour ajouter un document dans la collection de ***surveys***.
+  1. `surveyAdd({surveyId: INT, name: STRING, description: STRING, createdAt: DATE})` : pour ajouter un document dans la collection de ***surveys***.
   2. `surveyGet()` : pour afficher tous les documents de la collection de ***surveys***.
-  3. `surveyUpdate(surveyId, objet)` : pour modifier un document de la collection de ***surveys***.
-  4. `surveyDestroy(surveyId)` : pour supprimer un document de la collection de ***surveys***.
+  3. `surveyUpdate(surveyId: INT, {name: STRING, description: STRING, createdAt: DATE})` : pour modifier un document de la collection de ***surveys***.
+  4. `surveyDestroy(surveyId: INT)` : pour supprimer un document de la collection de ***surveys***.
 
 - **questionModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **questions**. Il est composé des fonctions suivantes :
 
-  1. `questionAdd(objet)` : pour ajouter un document dans la collection de ***questions***.
+  1. `questionAdd({questionId: INT, surveyId: INT, name: STRING, type: STRING})` : pour ajouter un document dans la collection de ***questions***.
   2. `questionGet()` : pour afficher tous les documents dans la collection de ***questions***.
-  3. `questionUpdate(questionId, objet)` : pour modifier un document dans la collection de ***questions***.
+  3. `questionUpdate(questionId,{ surveyId: INT, name: STRING, type: STRING} )` : pour modifier un document dans la collection de ***questions***.
   4. `questionDestroy(questionId)` : pour supprimer un document dans  la collection de ***questions***.
 
 
 
 - **answerModule.js :** Ce module permet de gérer les opérations **CRUD** de la collection **answers**. Il est composé des fonctions suivantes :
 
-  1. `answerAdd(objet)` : Pour ajouter un document dans la collection de ***answers***.
+  1. `answerAdd({answerId: INT, questionId: INT, title: STRING})` : Pour ajouter un document dans la collection de ***answers***.
   2. `answerGet()` : Pour afficher tous les documents dans la collection de ***answers***.
   3. `answerUpdate(questionId, objet)` : Pour modifier un document dans la collection de ***answers***.
   4. `answerDestroy(questionId)` : Pour supprimer un document dans la collection de ***answers***.
