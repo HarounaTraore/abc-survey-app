@@ -108,4 +108,4 @@ npm start
 
 ## Auteur 
 
-- [Harouna Adama Traoré](https://github.com/HarounaTraore/abc-survey-app.git)
+- [Harouna Adama Traoré](https://github.com/HarounaTraore/)
