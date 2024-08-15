@@ -4,18 +4,15 @@ const { addQuestion, getQuestion, updateQuestion, destroyQuestion } = require(".
 const { client } = require("./config/database");
 
 
-
-
-
-const question ={
+const question =  {
+  questionId: 1,
   surveyId: 1,
   title: "Comment évalueriez-vous notre service ?",
   type: "rating",
-  
+  option: 4
 }
 
-
-const survey = {
+const survey =  {
   surveyId: 1,
   name: "Enquête de Satisfaction 001",
   description: "Enquête visant à évaluer la satisfaction des clients concernant nos services.",
@@ -26,11 +23,7 @@ const survey = {
   }
 }
 
-const answer = {
-  answerId: 1,
-  questionId: 1,
-  title: "Très satisfait"
-}
+const answer = { answerId: 1, questionId: 1, title: "Très satisfait" }
 
 
 async function main() {
@@ -38,7 +31,7 @@ async function main() {
     await addSurvey(survey)
     await getSurvey()
     await updateSurvey(1, survey)
-    await destroySurvey(1)
+    await destroySurvey(1)  
 
 
     await addAnswer(answer)
