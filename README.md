@@ -80,7 +80,7 @@ L'application est subdivisée en cinq modules principaux :
   1. `questionAdd({questionId: int, surveyId: int, title: string, type: string, option: int})` : pour ajouter un document dans la collection de ***questions***.
   2. `questionGet()` : pour afficher tous les documents dans la collection de ***questions***.
   3. `questionUpdate(questionId, {surveyId: int, name: string, type: string, option: int})` : pour modifier un document dans la collection de ***questions***.
-  4. `questionDestroy(questionId)` : pour supprimer un document dans  la collection de ***questions***.
+  4. `questionDestroy(questionId: int)` : pour supprimer un document dans  la collection de ***questions***.
 
 
 
