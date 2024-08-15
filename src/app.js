@@ -31,18 +31,18 @@ async function main() {
     await addSurvey(survey)
     await getSurvey()
     await updateSurvey(1, survey)
-    await destroySurvey(1)  
+    await destroySurvey(4)  
 
 
     await addAnswer(answer)
     await getAnswer()
     await updateAnswer(1, answer)
-    await destroyAnswer(1)
+    await destroyAnswer(3)
 
 
     await addQuestion(question)
     await getQuestion()
-    await updateQuestion(100, question)
+    await updateQuestion(5, question)
     await destroyQuestion(2)
   } catch (e) {
     console.log(e);
